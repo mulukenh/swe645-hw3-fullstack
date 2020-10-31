@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+
+  nginx:
+    container_name: nginx-angular-frontend
+    image: nginx-angular-frontend
+    build:
+      context: .
+      dockerfile: .docker/nginx.dockerfile
+    volumes:
+      - ./dist:/usr/share/nginx/html
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on: 
+      - node
+    networks:
+      - app-network
+
+  node:
+    container_name: survey-frontend-app
+    image: survey-frontend-app
+    build:
+      context: .
+      dockerfile: .docker/nginx.dockerfile
+    environment:
+      - NODE_ENV=development
+      - CONTAINER=true
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
