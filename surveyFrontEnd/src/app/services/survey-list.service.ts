@@ -21,7 +21,7 @@ export class SurveyListService {
     return this.http.get<SurveyData[]>(this.surveyListUrl);
   }
 
-  postSurvey(surveyData: SurveyData) {
-    this.http.post(this.surveyListUrl, surveyData, httpOptions);
+  postSurvey(surveyData: SurveyData) : Observable<any> {
+    return this.http.post(this.surveyListUrl, surveyData, httpOptions);
   }
 }
