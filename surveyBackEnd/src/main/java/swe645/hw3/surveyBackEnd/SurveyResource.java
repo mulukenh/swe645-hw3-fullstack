@@ -29,14 +29,6 @@ public class SurveyResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Survey addSurvey(Survey survey) {
-		System.out.println(survey.getId());
-		System.out.println(survey.getContactInfo().getFirstName() + " " + survey.getContactInfo().getLastName());
-		System.out.println(survey.getDate());
-		System.out.println(survey.getLikedAboutCampus());
-		System.out.println(survey.getInterestsInCampus());
-		System.out.println(survey.getLikelyToRecommend());
-		System.out.println(survey.getRaffle());
-		System.out.println(survey.getComments());
 		repo.addSurvey(survey);
 	    return survey;
 	}

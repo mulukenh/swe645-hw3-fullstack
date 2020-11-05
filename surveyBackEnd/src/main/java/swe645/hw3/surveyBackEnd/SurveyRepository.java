@@ -19,10 +19,10 @@ public class SurveyRepository {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-		    CriteriaBuilder cb = session.getCriteriaBuilder();
-		    CriteriaQuery<Survey> cq = cb.createQuery(Survey.class);
-		    Root<Survey> rootEntry = cq.from(Survey.class);
-		    CriteriaQuery<Survey> all = cq.select(rootEntry);
+		    CriteriaBuilder criteriabuilder = session.getCriteriaBuilder();
+		    CriteriaQuery<Survey> criteriaQuery = criteriabuilder.createQuery(Survey.class);
+		    Root<Survey> rootEntry = criteriaQuery.from(Survey.class);
+		    CriteriaQuery<Survey> all = criteriaQuery.select(rootEntry);
 		 
 		    TypedQuery<Survey> allQuery = session.createQuery(all);
 		    surveys = allQuery.getResultList();
@@ -49,7 +49,6 @@ public class SurveyRepository {
 			}
 			e.printStackTrace();
 		}
-		// TODO
 		return survey;
 	}
 	
