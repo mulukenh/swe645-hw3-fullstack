@@ -13,7 +13,7 @@
             "phone": "123-345 4545"
         },
         "date": "12/04/1998",
-        "likedAboutCampus": "Sports",
+        "likelyToRecommend": "Sports",
         "interestsInCampus": "Friends",
         "doRecommend": "Very Likely",
         "raffel": 23,
@@ -34,7 +34,7 @@
             
         },
         "date": "08/23/2002",
-        "likedAboutCampus": "Atmosphere",
+        "likelyToRecommend": "Atmosphere",
         "interestsInCampus": "Internet",
         "doRecommend": "Likely",
         "raffel": 72,

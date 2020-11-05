@@ -26,7 +26,7 @@ export class SurveyFormComponent implements OnInit {
     date: [''],
     likedAboutCampus: this.formBuilder.array(this.likedAboutCampus.map(l => this.formBuilder.control(false))),
     interestsInCampus: [''],
-    doRecommend: [''],
+    likelyToRecommend: [''],
     raffle: [''],
     comments: ['']
   })

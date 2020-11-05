@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class SurveyListService {
-  surveyListUrl:string = "assets/survey-data.json";
+  surveyListUrl:string = "http://localhost:8080/surveyBackEnd/surveys";
 
   constructor(private http: HttpClient) { }
 

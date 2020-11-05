@@ -3,5 +3,4 @@
 Servers/
 instructions/
 notes.txt
-surveyFrontEnd/node_modules
-surveyFrontEnd/dist
+*.properties
