@@ -1,0 +1,54 @@
+version: "3.7"
+services:
+    survey-frontend:
+      container_name: survey-frontend
+      image: mulukenh/surveyfrontend:latest
+      build: 
+        context: .
+        dockerfile: surveyfrontend.dockerfile
+      depends_on: 
+        - survey-backend
+      ports:
+        - 8200:80
+      networks:
+        - survey-app-network
+        
+    survey-backend:
+      container_name: survey-backend
+      image: mulukenh/surveybackend:latest
+      build: 
+        context: .
+        dockerfile: surveybackend.dockerfile
+      ports:
+      - "8080:8080"
+      depends_on:
+        - survey-db
+      networks:
+        - survey-app-network
+
+    survey-db:
+      container_name: surveydb
+      image: mulukenh/surveydb:latest
+      restart: always
+      build:
+        context: .
+        dockerfile: surveydb.dockerfile
+      ports:
+        - "3306:3306"
+      volumes:
+        - db_data:/var/lib/mysql
+      environment:
+        MYSQL_DATABASE: surveydb
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_USER: surveydbadmin
+      networks:
+        - survey-app-network
+        
+networks:
+    survey-app-network:
+      driver: bridge
+
+volumes:
+    db_data: {}
+
+
