@@ -1,7 +1,7 @@
 version: "3.7"
 services:
     survey-frontend:
-      container_name: survey-frontend
+      container_name: survey-frontend-container
       image: mulukenh/surveyfrontend:latest
       build: 
         context: .
@@ -14,7 +14,7 @@ services:
         - survey-app-network
         
     survey-backend:
-      container_name: survey-backend
+      container_name: survey-backend-container
       image: mulukenh/surveybackend:latest
       build: 
         context: .
@@ -27,7 +27,7 @@ services:
         - survey-app-network
 
     survey-db:
-      container_name: surveydb
+      container_name: surveydb-container
       image: mulukenh/surveydb:latest
       restart: always
       build:
@@ -35,6 +35,8 @@ services:
         dockerfile: surveydb.dockerfile
       ports:
         - "3306:3306"
+      expose:
+        - "3306"
       volumes:
         - db_data:/var/lib/mysql
       environment:
