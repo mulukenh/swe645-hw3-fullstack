@@ -5,7 +5,7 @@ services:
       image: mulukenh/surveyfrontend:latest
       build: 
         context: .
-        dockerfile: surveyfrontend.dockerfile
+        dockerfile: surveyFrontEnd/Dockerfile
       depends_on: 
         - survey-backend
       ports:
@@ -18,39 +18,41 @@ services:
       image: mulukenh/surveybackend:latest
       build: 
         context: .
-        dockerfile: surveybackend.dockerfile
+        dockerfile: surveyBackEnd/Dockerfile
       ports:
       - "8080:8080"
-      depends_on:
-        - survey-db
+      # depends_on:
+      #   - survey-db
       networks:
         - survey-app-network
 
-    survey-db:
-      container_name: surveydb-container
-      image: mulukenh/surveydb:latest
-      restart: always
-      build:
-        context: .
-        dockerfile: surveydb.dockerfile
-      ports:
-        - "3306:3306"
-      expose:
-        - "3306"
-      volumes:
-        - db_data:/var/lib/mysql
-      environment:
-        MYSQL_DATABASE: surveydb
-        MYSQL_ROOT_PASSWORD: password
-        MYSQL_USER: surveydbadmin
-      networks:
-        - survey-app-network
-        
+    # survey-db:
+    #   container_name: surveydb-container
+    #   image: mulukenh/surveydb:latest
+    #   restart: always
+    #   build:
+    #     context: .
+    #     dockerfile: surveydb.dockerfile
+    #   ports:
+    #     - "3306:3306"
+    #   expose:
+    #     - "3306"
+    #   volumes:
+    #     - db_data:/var/lib/mysql
+    #   environment:
+    #     MYSQL_ROOT_HOST: localhost
+    #     MYSQL_DATABASE: surveydb
+    #     MYSQL_ROOT_USER: surveydbadmin
+    #     MYSQL_ROOT_PASSWORD: password
+    #   networks:
+    #     - survey-app-network
+# volumes:
+#     db_data:
+  
 networks:
     survey-app-network:
       driver: bridge
 
-volumes:
-    db_data: {}
+
 
 
