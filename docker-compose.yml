@@ -20,38 +20,39 @@ services:
         context: .
         dockerfile: surveybackend.dockerfile
       ports:
-      - "8080:8080"
-      # depends_on:
-      #   - survey-db
+        - "8080:8080"
+      links:
+        - survey-db
       networks:
         - survey-app-network
 
-    # survey-db:
-    #   container_name: surveydb-container
-    #   image: mulukenh/surveydb:latest
-    #   restart: always
-    #   build:
-    #     context: .
-    #     dockerfile: surveydb.dockerfile
-    #   ports:
-    #     - "3306:3306"
-    #   expose:
-    #     - "3306"
-    #   volumes:
-    #     - db_data:/var/lib/mysql
-    #   environment:
-    #     MYSQL_ROOT_HOST: localhost
-    #     MYSQL_DATABASE: surveydb
-    #     MYSQL_ROOT_USER: surveydbadmin
-    #     MYSQL_ROOT_PASSWORD: password
-    #   networks:
-    #     - survey-app-network
-# volumes:
-#     db_data:
-  
+    survey-db:
+      container_name: surveydb-container
+      image: mulukenh/surveydb:latest
+      command: --default-authentication-plugin=mysql_native_password
+      volumes:
+        - db_data:/var/lib/mysql
+      restart: always
+      build:
+        context: .
+        dockerfile: surveydb.dockerfile
+      environment:
+        - MYSQL_HOST=localhost
+        - MYSQL_DATABASE=surveydb
+        - MYSQL_ROOT_PASSWORD=password    
+      ports:
+        - 3306:3306
+      networks:
+        - survey-app-network
+      cap_add:
+        - SYS_NICE 
+
+volumes:
+  db_data:
+
 networks:
-    survey-app-network:
-      driver: bridge
+  survey-app-network:
+    driver: bridge
 
 
 

@@ -6,10 +6,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'survey-form', component: SurveyFormComponent },
   { path: 'survey-list', component: SurveyListComponent },
-  { path: 'survey-detail', component: SurveyDetailComponent}
+  { path: 'survey-detail', component: SurveyDetailComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 
 @NgModule({

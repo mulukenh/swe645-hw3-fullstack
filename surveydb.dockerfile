@@ -1,3 +1,3 @@
-FROM    mysql/mysql-server:8.0.22
+FROM    mysql:latest
 LABEL   author="Muluken Taye"
 EXPOSE  3306
