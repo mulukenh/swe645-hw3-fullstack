@@ -21,10 +21,6 @@ services:
       build: 
         context: .
         dockerfile: surveymaven.dockerfile
-      environment:
-        - DB_CONNECTION_URL=${DB_CONNECTION_URL}
-        - DB_USER=${DB_USER}
-        - DB_PASSWORD=${DB_PASSWORD} 
         
     survey-tomcat:
       container_name: survey-tomcat
@@ -42,10 +38,6 @@ services:
         - survey-app-network 
       depends_on:
         - survey-maven
-      environment:
-        - DB_CONNECTION_URL=${DB_CONNECTION_URL}
-        - DB_USER=${DB_USER}
-        - DB_PASSWORD=${DB_PASSWORD} 
 
     survey-db:
       container_name: surveydb-container
