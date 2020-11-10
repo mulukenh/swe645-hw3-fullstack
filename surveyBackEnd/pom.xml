@@ -8,6 +8,7 @@
     <name>surveyBackEnd Jersey Webapp</name>
     <build>
         <finalName>surveyBackEnd</finalName>
+        <defaultGoal>package</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

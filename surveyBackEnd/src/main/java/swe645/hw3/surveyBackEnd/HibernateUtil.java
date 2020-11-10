@@ -14,6 +14,9 @@ public class HibernateUtil {
 						.configure()
 						.addAnnotatedClass(Survey.class)
 						.addAnnotatedClass(Contact.class);
+						// .setProperty("hibernate.connection.url", System.getenv("DB_CONNECTION_URL"))
+						// .setProperty("hibernate.connection.username", System.getenv("DB_USER"))
+						// .setProperty("hibernate.connection.password", System.getenv("DB_PASSWORD"));
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(config.getProperties())
 						.build();
