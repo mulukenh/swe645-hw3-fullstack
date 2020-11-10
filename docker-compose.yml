@@ -25,6 +25,10 @@ services:
         - survey-db
       networks:
         - survey-app-network
+      environment:
+        - DB_CONNECTION_URL=${DB_CONNECTION_URL}
+        - DB_USER=${DB_USER}
+        - DB_PASSWORD=${DB_PASSWORD} 
 
     survey-db:
       container_name: surveydb-container
@@ -37,9 +41,10 @@ services:
         context: .
         dockerfile: surveydb.dockerfile
       environment:
-        - MYSQL_HOST=localhost
-        - MYSQL_DATABASE=surveydb
-        - MYSQL_ROOT_PASSWORD=password    
+        - MYSQL_HOST=${DB_HOST}
+        - MYSQL_DATABASE=${DB_NAME}
+        - MYSQL_ROOT_USERNAME=${DB_USER}
+        - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}  
       ports:
         - 3306:3306
       networks:

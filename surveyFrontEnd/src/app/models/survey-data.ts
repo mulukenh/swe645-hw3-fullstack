@@ -6,7 +6,7 @@ export class SurveyData {
     date: string;
     likedAboutCampus: string[];
     interestsInCampus: string;
-    doRecommend: string;
+    livelyToRecomment: string;
     raffle: number;
     comments: string;
 }

@@ -7,3 +7,5 @@ RUN     mvn -f ./pom.xml clean package
 
 From    tomcat:9.0-jdk15
 COPY    --from=build /app/target/surveyBackEnd.war /usr/local/tomcat/webapps
+CMD     ["catalina.sh", "run"]
+EXPOSE 8080
