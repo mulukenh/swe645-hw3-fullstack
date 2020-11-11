@@ -1,43 +1,30 @@
 version: "3.7"
 services:
     survey-frontend:
-      container_name: survey-frontend-container
+      container_name: survey-frontend
       image: mulukenh/surveyfrontend:latest
       build: 
         context: .
         dockerfile: surveyfrontend.dockerfile
       depends_on: 
-        - survey-tomcat
+        - survey-backend
       ports:
         - 8200:80
       networks:
         - survey-app-network
-  
-    survey-maven:
-      container_name: survey-maven
-      image: mulukenh/surveymaven:latest
-      volumes:
-        - source_data:/app/target
-      build: 
-        context: .
-        dockerfile: surveymaven.dockerfile
         
-    survey-tomcat:
-      container_name: survey-tomcat
-      image: mulukenh/surveytomcat:latest
-      volumes:
-        - source_data:/usr/local/tomcat/webapps
+    survey-backend:
+      container_name: survey-backend
+      image: mulukenh/surveybackend:latest
       build: 
         context: .
-        dockerfile: surveytomcat.dockerfile
+        dockerfile: surveybackend.dockerfile
       ports:
         - "8080:8080"
       links:
         - survey-db
       networks:
         - survey-app-network 
-      depends_on:
-        - survey-maven
 
     survey-db:
       container_name: surveydb-container
@@ -63,7 +50,6 @@ services:
 
 volumes:
   db_data:
-  source_data:
 
 networks:
   survey-app-network:
