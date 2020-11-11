@@ -1,0 +1,201 @@
+html,body,h1,h2,h3,h4,h5,h6,label,p 
+{
+    /**Generic font family for the pages**/
+    font-family: "Roboto", sans-serif
+}
+/**CSS for classes using University color codes**/
+.w3-teal, .w3-hover-teal:hover {
+    color: #ffcc33!important;
+    background-color: #006633 !important;
+}
+
+.w3-opacity
+{
+    color: #9D7F00 !important;
+}
+
+/**CSS for classes using University color codes**/
+.w3-text-teal, .w3-text-grey, .w3-hover-text-teal:hover {
+    color: #006633 !important
+}
+
+/**CSS for tables and lists**/
+table th, table td {
+    border: 1px solid lightgray;
+}
+
+.w3-border td{
+    border: 1.5px solid white !important;
+    vertical-align: middle;
+}
+
+.w3-border li {
+    border: 1px solid white !important;
+}
+/**End of CSS for tables and lists**/
+
+/**Header CSS of Survey Page**/
+.w3-blue {
+    background-color: #ffcc33 !important;
+    border: 5px solid #006633 !important;
+    display: inline-block;
+    width: 80%;
+    box-shadow: 5px 5px 10px 10px grey;
+}
+
+/**CSS for header classes using University color codes**/
+.w3-blue h2 {
+    color: #006633 !important;
+}
+
+/**CSS for form fields in Survey Page**/
+.w3-third label, td.formdata {
+    color: #425195 !important;
+    font-weight: 700;
+}
+
+.w3-black {
+    background-color: #f7941e !important;
+    color: white !important;
+}
+
+/**CSS for footer**/
+footer p {
+    font-weight: 500;
+}
+
+footer a {
+    padding: 0% 0.5% 0% 0.5%;
+}
+
+div#univlogo {
+    text-align: end;
+}
+/**End of CSS for footer**/
+
+/**CSS for student information**/
+.skills{
+    color:#81902b;
+}
+
+.student_name {
+    color:lightgrey;
+}
+
+img[alt = "Avatar"]
+{
+    width: 100%;
+}
+/**End of CSS for student information**/
+
+#PageContainer, #PageContainerHW1Tab{
+    max-width:1400px;
+}
+
+/**CSS for Survey Page classes and tags**/
+#SurveyPageTitle
+{
+    text-align: center;
+}
+
+.w3-light-grey {
+    background-color: #D8D8C1 !important;
+}
+
+.QstnText {
+    color: #425195;
+    font-weight: 700;
+}
+
+.requiredField, #ErrorMsg {
+    color: red;
+    font-size: medium;
+    font-weight: 700;
+    padding-left: 5px;
+}
+/**End of CSS for Survey Page**/
+
+/**CSS to remove underline on hyperlinks**/
+.w3-container a{
+    text-decoration: none;
+}
+
+
+#welcomeMsg{
+    color:#425195 !important;
+    text-align: right;
+    font-weight: 800;
+    padding: 1.5% 1.5% 1.5% 1.5%;
+}
+
+#DataMsg, #ZipMsg{
+    display: none;
+}
+
+#city, #state {
+    background-color: white;
+}
+
+
+
+/* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+    display: none;
+    position: absolute;
+    width: 50%;
+    margin: 0% 0% 0% 25%;
+    z-index: 10;
+}
+  
+  /* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/*CSS for links in homewors*/
+#surveyPageTab {
+    cursor: pointer;
+}
+
+  /* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+
+#tabs .w3-button
+{
+    background-color: #d1d3d5;
+    color: #425195;
+    margin: 0.5% 0% 0.5% 0%; 
+}
+
+p .w3-button
+{
+    margin: 0% 0.5% 0% 0.5%;
+}
+
+#PageContainer
+{
+    padding-bottom: 12%;
+}
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3%;            
+}
+label
+{
+    padding-left: 1%;
+}

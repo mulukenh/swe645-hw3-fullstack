@@ -1,0 +1,169 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body class="w3-light-grey">
+    <div id="hw2-3">
+        <div id="SurveyPageTitle">
+            <div class="w3-container w3-blue">
+                <h2>Campus Visit Feedback Survey</h2>
+            </div>
+        </div>
+        <form id="SurveyForm" ngNativeValidate class="w3-container" autocomplete="on" method="post" action="submitsurvey" (ngSubmit)="submitData(f)" #f="ngForm">
+            <!--This section contains form that will ask for specified details of the student attending the survey-->
+            <div class="w3-row-padding">
+                <br>
+                <!-- <div class="w3-third">
+                    <label>Student ID</label><span class="requiredField">*</span>
+                    <input class="w3-input w3-border" type="text" id="studentid" [(ngModel)]="studentid" name="studentid" required
+                        placeholder="Enter Student ID">
+                </div> -->
+                <!--First Name and Last Name of the Student-->
+                <div class="w3-third">
+                    <label>First Name</label><span class="requiredField">*</span>
+                    <input class="w3-input w3-border" type="text" id="fname" [(ngModel)]="fname" name="fname" required
+                        placeholder="Enter First Name" autofocus>
+                </div>
+                <div class="w3-third">
+                    <label>Last Name</label><span class="requiredField">*</span>
+                    <input class="w3-input w3-border" type="text" id="lname" [(ngModel)]="lname" name="lname" required
+                        placeholder="Enter Last Name">
+                </div>
+            </div>
+            <div class="w3-row-padding">
+                <!--Address of the student attending the survey-->
+                <br>
+                <div class="w3-third">
+                    <label>Street Address</label><span class="requiredField">*</span>
+                    <input class="w3-input w3-border" id="staddr" [(ngModel)]="staddr" name="staddr" type="text" required
+                        placeholder="Enter Street Address">
+                </div>
+                <div class="w3-third">
+                    <label>Zip</label><span class="requiredField">*</span>
+                    <!--This input will call function using onblur event that would fetch values for city and state for input zipcode-->
+                    <input class="w3-input w3-border" id="zipcode" maxlength="5" [(ngModel)]="zipcode" name="zipcode" type="text" required
+                        placeholder="Enter Zip Code">
+                    <span id="ZipMsg" class="requiredField">Please enter a valid zipcode</span>
+                </div>
+
+            </div>
+            <div class="w3-row-padding">
+                <!--Contact Details of the student-->
+                <br>
+                <div class="w3-third">
+                    <label>City</label><span class="requiredField">*</span>
+                    <input class="w3-input w3-border" id="city" [(ngModel)]="city" name="city" type="text" required
+                        placeholder="Enter City">
+                </div>
+                <div class="w3-third">
+                    <label>State</label><span class="requiredField">*</span>
+                    <input class="w3-input w3-border" id="state" [(ngModel)]="state" name="state" type="text" required
+                        placeholder="Enter State">
+                </div>
+                <div class="w3-third">
+                    <label>Telephone Number</label><span class="requiredField">*</span>
+                    <input class="w3-input w3-border" id="contact" [(ngModel)]="contact" name="contact" type="text"
+                        placeholder="Enter contact number">
+                </div>
+
+            </div>
+            <div class="w3-row-padding">
+                <!--URL of the student if any and the date on which the student attended the survey-->
+                <br>
+                <div class="w3-third">
+                    <label>Email ID</label><span class="requiredField">*</span>
+                    <input class="w3-input w3-border" id="email" [(ngModel)]="email" name="email" type="text" required
+                        placeholder="Enter Email ID (name@domain.com)">
+                </div>
+                <div class="w3-third">
+                    <label>Date of Survey</label><span class="requiredField">*</span>
+                    <input class="w3-input w3-border" id="date" type="date" [(ngModel)]="surveydate" name="surveydate" required
+                        placeholder="Enter the date of survey" required>
+                </div>
+
+            </div>
+            <div class="w3-row-padding">
+                <!--Check box related question for student-->
+                <p>
+                    <label class="QstnText">Indicate by checking boxes what you liked the most about your
+                        visit</label>
+                </p>
+                <div *ngFor="let liked of likedArr" ngModelGroup="likedSelected">
+                    <div class="w3-col m3">
+                        <input class="w3-check" type="checkbox" name="liked" (change)="getSelectedLike($event,liked)" ngModel [value]="liked">
+                        <label>{{liked}}</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="w3-row-padding">
+                <!--Radio Button related question for students-->
+                <p>
+                    <label class="QstnText">Indicate source of interest in the university</label>
+                </p>
+                <div *ngFor="let source of sources">
+                    <div class="w3-col m3">
+                        <input class="w3-radio" type="radio" name="source" ngModel [value]="source" required>
+                        <label>{{ source }}</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="w3-row-padding">
+                <!--Recommendation possibility using dropdown option-->
+                <p>
+                    <label class="QstnText">How likely would you recommend this school</label>
+                </p>
+                <div class="w3-col m3">
+                    <select id="recommendselect" class="w3-input w3-border" [(ngModel)]="recommend" name="recommend">
+                        <option value="Very Likely">Very Likely</option>
+                        <option value="Likely">Likely</option>
+                        <option value="Unlikely">Unlikely</option>
+                    </select>
+                </div>
+
+
+            </div>
+            <div class="w3-row-padding">
+                <!--Additional Comments sections-->
+                <p>
+                    <label class="QstnText">Additional Comments</label>
+                    <textarea id="comments" [(ngModel)]="comments" name="comments" class="w3-input w3-border" rows="4" cols="50"
+                        placeholder="Enter Additional Comments if any"></textarea>
+                </p>
+            </div>
+            <div class="w3-row-padding">
+                <!--Buttons to submit and reset form-->
+                <p>
+                    <button class="w3-button w3-black w3-round-xlarge" type="submit">Submit</button>
+                    <button class="w3-button w3-black w3-round-xlarge" onclick="resetForm()">Reset</button>
+                </p>
+            </div>
+        </form>
+        <div id="author">Author: Aditya Raghunath Sawant (G01177792)</div>
+</div>
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+    <!--This section will display contact details and various platforms of connecting with George Mason University-->
+    <div class="w3-row-padding">
+        <div class="w3-twothird">
+            <p>Find us on social media.</p>
+            <a href="https://www.facebook.com/georgemason/"><i
+                    class="fa fa-facebook-official w3-hover-opacity"></i></a>
+            <a href="https://www.instagram.com/georgemasonu/?hl=en"><i
+                    class="fa fa-instagram w3-hover-opacity"></i></a>
+            <a href="https://twitter.com/GeorgeMasonU?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+                <i class="fa fa-twitter w3-hover-opacity"></i>
+            </a>
+            <a href="https://www.linkedin.com/school/george-mason-university/"><i
+                    class="fa fa-linkedin w3-hover-opacity"></i></a>
+        </div>
+        <div id="univlogo" class="w3-third">
+            <a href="https://www2.gmu.edu/">
+                <img src="assets/university_logo.png" alt="University_Logo" height="100" width="150">
+            </a>
+        </div>
+    </div>
+</footer>
+</body>
+

@@ -1,0 +1,99 @@
+<head>
+    <title>All Surveys</title>
+</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body class="w3-light-grey">
+<div id="PageContainer" class="w3-content w3-margin-top">
+	<!-- The Grid -->
+	<div class="w3-row-padding">
+		<!-- Left Column -->
+      <div class="w3-third">
+      		<div class="w3-container">
+				<h5 class="w3-opacity"><b>Student Surveys</b></h5>
+				<ul *ngFor="let gnum of gnumArr" class="w3-ul w3-light-grey w3-border w3-hoverable">
+				    <a><li (click)='getStudentSurveyData($event, gnum)' name="gnum" value="gnum">{{gnum}}</li></a>
+				</ul>
+      		</div>
+      </div>
+      <!-- Right Column -->
+      <div class="w3-twothird">
+      		<!-- This message will be displayed once the form is submitted -->
+      		<h2 class="w3-padding-16 w3-margin-right w3-xxlarge w3-opacity">Thank you for completing the survey form</h2>
+					<!-- Generate table and display survey data of clicked gnumber/student id only if data is not null-->
+					<!-- The value of respective field is retrieved using the getter function defined in the StudentBean-->
+					<table border ="1" class="w3-table-all w3-centered">
+						<tr>
+							<td class="w3-padding-16 formdata">Student Id</td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.id"></td>
+						</tr>
+						<tr>
+							<td class="w3-padding-16 formdata">First Name</td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.firstName"></td>
+							<td class="w3-padding-16 formdata">Last Name</td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.lastName"></td>
+						</tr>
+						<tr>
+							<td class="w3-padding-16 formdata">Address</td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.address"></td>
+							<td class="w3-padding-16 formdata">Zip Code</td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.zip"></td>
+						</tr>
+						<tr>
+							<td class="w3-padding-16 formdata">City</td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.city"></td>
+							<td class="w3-padding-16 formdata">State</td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.state"></td>
+						</tr>
+						<tr>
+							<td class="w3-padding-16 formdata">Contact No.</td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.phone"></td>
+							<td class="w3-padding-16 formdata">Email</td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.email"></td>
+						</tr>
+						<tr>
+							<td class="w3-padding-16 formdata">Date of Survey (yyyy-mm-dd)</td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.date"></td>
+						</tr>
+						<tr>
+							<td class="w3-padding-16 formdata">Source of Interest</td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.interestsInCampus"></td>
+							<td class="w3-padding-16 formdata">What you liked about university</td>
+							<td><textarea class="w3-input w3-border" type="text" readonly>{{studentSurveyData.survey.likedAboutCampus}}</textarea></td>
+						</tr>
+						<tr>
+							<td class="w3-padding-16 formdata">Recommend to others</td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.doRecommend"></td>
+							<td class="w3-padding-16 formdata">Comments</td>
+							<td><textarea class="w3-input w3-border" type="text" readonly>{{studentSurveyData.survey.comments}}</textarea></td>
+						</tr>
+					</table>
+      </div>
+	</div>
+</div>
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+    <!--This section will display contact details and various platforms of connecting with George Mason University-->
+    <div class="w3-row-padding">
+        <div class="w3-twothird">
+            <p>Find us on social media.</p>
+            <a href="https://www.facebook.com/georgemason/"><i
+                    class="fa fa-facebook-official w3-hover-opacity"></i></a>
+            <a href="https://www.instagram.com/georgemasonu/?hl=en"><i
+                    class="fa fa-instagram w3-hover-opacity"></i></a>
+            <a href="https://twitter.com/GeorgeMasonU?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+                <i class="fa fa-twitter w3-hover-opacity"></i>
+            </a>
+            <a href="https://www.linkedin.com/school/george-mason-university/"><i
+                    class="fa fa-linkedin w3-hover-opacity"></i></a>
+        </div>
+        <div id="univlogo" class="w3-third">
+            <a href="https://www2.gmu.edu/">
+                <img src="assets/university_logo.png" alt="University_Logo" height="100" width="150">
+            </a>
+        </div>
+    </div>
+</footer>
+</body>
