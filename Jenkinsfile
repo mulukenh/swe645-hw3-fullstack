@@ -11,7 +11,7 @@ pipeline {
                     // def surveyImage = docker.build("mulukenh/surveyhomework:${env.BUILD_ID}")
                     // docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                     //     surveyImage.push()
-                    }   
+                    // }   
                 }
             }
         }   
