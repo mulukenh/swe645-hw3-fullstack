@@ -1,6 +1,6 @@
 FROM    node:14.1-alpine AS builder
 WORKDIR /app
-COPY    angularApp/package.json angularApp/package-lock.json ./
+COPY    surveyFrontEnd/package.json surveyFrontEnd/package-lock.json ./
 RUN     npm install
 ENV     PATH="./node_modules/.bin:$PATH"
 COPY    ./angularApp/ ./
