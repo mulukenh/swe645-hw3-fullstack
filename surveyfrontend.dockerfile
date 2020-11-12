@@ -3,7 +3,7 @@ WORKDIR /app
 COPY    surveyFrontEnd/package.json surveyFrontEnd/package-lock.json ./
 RUN     npm install
 ENV     PATH="./node_modules/.bin:$PATH"
-COPY    ./angularApp/ ./
+COPY    ./surveyFrontEnd/ ./
 RUN     ng build --prod
 
 FROM    nginx:1.17-alpine
