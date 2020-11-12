@@ -15,7 +15,7 @@
       		<div class="w3-container">
 				<h5 class="w3-opacity"><b>Student Surveys</b></h5>
 				<ul *ngFor="let gnum of gnumArr" class="w3-ul w3-light-grey w3-border w3-hoverable">
-				    <a><li (click)='getStudentSurveyData($event, gnum)' name="gnum" value="gnum">{{gnum}}</li></a>
+				    <a><li (click)='getStudentSurveyData(gnum)' name="gnum" value="gnum">{{gnum}}</li></a>
 				</ul>
       		</div>
       </div>
@@ -28,47 +28,47 @@
 					<table border ="1" class="w3-table-all w3-centered">
 						<tr>
 							<td class="w3-padding-16 formdata">Student Id</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.id"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.contactInfo.id"></td>
 						</tr>
 						<tr>
 							<td class="w3-padding-16 formdata">First Name</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.firstName"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.contactInfo.firstName"></td>
 							<td class="w3-padding-16 formdata">Last Name</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.lastName"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.contactInfo.lastName"></td>
 						</tr>
 						<tr>
 							<td class="w3-padding-16 formdata">Address</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.address"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.contactInfo.address"></td>
 							<td class="w3-padding-16 formdata">Zip Code</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.zip"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.contactInfo.zip"></td>
 						</tr>
 						<tr>
 							<td class="w3-padding-16 formdata">City</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.city"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.contactInfo.city"></td>
 							<td class="w3-padding-16 formdata">State</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.state"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.contactInfo.state"></td>
 						</tr>
 						<tr>
 							<td class="w3-padding-16 formdata">Contact No.</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.phone"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.contactInfo.phone"></td>
 							<td class="w3-padding-16 formdata">Email</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.contactInfo.email"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.contactInfo.email"></td>
 						</tr>
 						<tr>
 							<td class="w3-padding-16 formdata">Date of Survey (yyyy-mm-dd)</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.date"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.date"></td>
 						</tr>
 						<tr>
 							<td class="w3-padding-16 formdata">Source of Interest</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.interestsInCampus"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.interestsInCampus"></td>
 							<td class="w3-padding-16 formdata">What you liked about university</td>
-							<td><textarea class="w3-input w3-border" type="text" readonly>{{studentSurveyData.survey.likedAboutCampus}}</textarea></td>
+							<td><textarea class="w3-input w3-border" type="text" readonly>{{studentSurveyData.likedAboutCampus}}</textarea></td>
 						</tr>
 						<tr>
 							<td class="w3-padding-16 formdata">Recommend to others</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.survey.doRecommend"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.doRecommend"></td>
 							<td class="w3-padding-16 formdata">Comments</td>
-							<td><textarea class="w3-input w3-border" type="text" readonly>{{studentSurveyData.survey.comments}}</textarea></td>
+							<td><textarea class="w3-input w3-border" type="text" readonly>{{studentSurveyData.comments}}</textarea></td>
 						</tr>
 					</table>
       </div>

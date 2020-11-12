@@ -19,14 +19,18 @@ export class AllSurveysComponent implements OnInit {
       (response: any) => {
       //Store the response in array
       console.log(response)
-      if(Array.isArray(response) == false)
+      let surveydata = response
+      if(Array.isArray(surveydata.survey) == false)
       {
-        this.studentSurveyData = response;
-        this.gnumArr[0] = this.studentSurveyData.survey.contactInfo.id;
+        this.studentSurveyData = surveydata.survey;
+        this.gnumArr.push(this.studentSurveyData.survey.contactInfo.id);
       }
       else{
-        this.studentSurveyData = response[0];
-        this.gnumArr[0] = this.studentSurveyData.survey.contactInfo.id;
+        this.studentSurveyData = surveydata.survey[0];
+        for (let i = 0; i < surveydata.survey.length; i++) {
+          this.gnumArr.push(surveydata.survey[i].id);
+        }
+        //this.gnumArr[0] = this.studentSurveyData.survey.contactInfo.id;
       }
       },
       (error: any) => {
@@ -41,10 +45,11 @@ export class AllSurveysComponent implements OnInit {
    * @param event is the click event that has all the values of the event
    * @param gnum is the gnumber value fetched from ngModel
    */
-  getStudentSurveyData(event, gnum: String) {
+  getStudentSurveyData(gnum: String) {
     this.service.getStudentSurvey(gnum).subscribe(
       (response: any) => {
-      this.studentSurveyData = response;
+        //alert("Received");
+        this.studentSurveyData = response;
       },
       (error: any) => {
         console.log("Error");

@@ -9,6 +9,7 @@
             <div class="w3-container w3-blue">
                 <h2>Campus Visit Feedback Survey</h2>
             </div>
+            <div id="allsurveysBtn" routerLink="/allsurvey" class="w3-bar-item w3-button w3-black" routerLinkActive="tabs-active" [routerLinkActiveOptions]="{exact: true}">All Surveys</div>
         </div>
         <form id="SurveyForm" ngNativeValidate class="w3-container" autocomplete="on" method="post" action="submitsurvey" (ngSubmit)="submitData(f)" #f="ngForm">
             <!--This section contains form that will ask for specified details of the student attending the survey-->
