@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Survey {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    int surveyId;
     String date;
     @ElementCollection
     List<String> likedAboutCampus = new ArrayList<String>();
@@ -33,11 +33,11 @@ public class Survey {
     
     
 	public int getId() {
-		return id;
+		return surveyId;
 	}
 	
 	public void setId(int id) {
-		this.id = id;
+		this.surveyId = id;
 	}
 	
 	public Contact getContactInfo() {

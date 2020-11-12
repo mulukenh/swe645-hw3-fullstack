@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -13,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Contact {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	int id;
+	int contactId;
 	String firstName;
 	String lastName;
 	String address;
@@ -22,13 +23,15 @@ public class Contact {
 	int zip;
 	String email;
 	String phone;
+    @OneToOne(mappedBy="contactInfo")
+    Survey survey;
 	
 	public int getId() {
-		return id;
+		return contactId;
 	}
 	
 	public void setId(int id) {
-		this.id = id;
+		this.contactId = id;
 	}
 	
 	public String getFirstName() {
