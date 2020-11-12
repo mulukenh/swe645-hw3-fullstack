@@ -25,6 +25,8 @@ services:
         - survey-db
       networks:
         - survey-app-network 
+      depends_on: 
+        - survey-db
 
     survey-db:
       container_name: surveydb-container
