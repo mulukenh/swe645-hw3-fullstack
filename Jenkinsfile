@@ -18,9 +18,9 @@ pipeline {
         stage("Deploying to Rancher") {
             steps {
                 script {
-                    sh 'kubectl set image deployment/survey-db-app survey-homework=mulukenh/surveydb:latest -n survey-db'
-                    sh 'kubectl set image deployment/surveybackend-app survey-homework=mulukenh/surveybackend:latest -n survey-backend'
-                    sh 'kubectl set image deployment/surveyfrontend-app survey-homework=mulukenh/surveyfrontend:latest -n survey-frontend'
+                    sh 'kubectl set image deployment/survey-db-app surveydb=mulukenh/surveydb:latest -n survey-db'
+                    sh 'kubectl set image deployment/surveybackend-app surveybackend=mulukenh/surveybackend:latest -n survey-backend'
+                    sh 'kubectl set image deployment/surveyfrontend-app surveyfrontend=mulukenh/surveyfrontend:latest -n survey-frontend'
                 }
             }    
         }         
