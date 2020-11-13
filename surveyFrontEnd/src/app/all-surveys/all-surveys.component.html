@@ -25,7 +25,8 @@
       		<h2 class="w3-padding-16 w3-margin-right w3-xxlarge w3-opacity">Thank you for completing the survey form</h2>
 					<!-- Generate table and display survey data of clicked gnumber/student id only if data is not null-->
 					<!-- The value of respective field is retrieved using the getter function defined in the StudentBean-->
-					<table border ="1" class="w3-table-all w3-centered">
+					<div class="QstnText" *ngIf="studentSurveyData == null">No Survey Data Present!!</div>
+					<table *ngIf="studentSurveyData != null" border ="1" class="w3-table-all w3-centered">
 						<tr>
 							<td class="w3-padding-16 formdata">Student Id</td>
 							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.contactInfo.id"></td>
@@ -66,7 +67,7 @@
 						</tr>
 						<tr>
 							<td class="w3-padding-16 formdata">Recommend to others</td>
-							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.doRecommend"></td>
+							<td><input class="w3-input w3-border" type="text" readonly [value]="studentSurveyData.likelyToRecommend"></td>
 							<td class="w3-padding-16 formdata">Comments</td>
 							<td><textarea class="w3-input w3-border" type="text" readonly>{{studentSurveyData.comments}}</textarea></td>
 						</tr>
