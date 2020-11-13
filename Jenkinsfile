@@ -1,7 +1,15 @@
 pipeline {
     agent any 
     stages {
-        stage("Creating *.war file and building docker image") {
+        stage("Clean up images and containers") {
+            steps {
+                script {
+                    sh 'docker rm -f $(ps docker -q -a)'
+                    sh 'docker rmi -f $(docker images -q)'
+                }
+            }    
+        }       
+        stage("building docker image") {
             steps {
                 echo 'creating docker images'
                 script {
@@ -25,15 +33,7 @@ pipeline {
                     sh 'kubectl set image deployment/surveyfrontend-app surveyfrontend-app=mulukenh/surveyfrontend:${env.BUILD_ID} -n survey-frontend'
                 }
             }    
-        }   
-        stage("Clean up images and containers") {
-            steps {
-                script {
-                    sh 'docker rmi -f $ (docker images -q)'
-                    sh 'docker rm -f $ (ps docker -q -a)'
-                }
-            }    
-        }        
+        }    
     }
 }
 
