@@ -1,6 +1,5 @@
 pipeline {
     agent any 
-
     stages {
         stage("Creating *.war file and building docker image") {
             steps {
@@ -26,23 +25,15 @@ pipeline {
                     sh 'kubectl set image deployment/surveyfrontend-app surveyfrontend-app=mulukenh/surveyfrontend:${env.BUILD_ID} -n survey-frontend'
                 }
             }    
-        }         
+        }   
+        stage("Clean up images and containers") {
+            steps {
+                script {
+                    sh 'docker rmi -f $ (docker images -q)'
+                    sh 'docker rm -f $ (ps docker -q -a)'
+                }
+            }    
+        }        
     }
 }
 
-
-   pipeline {
-        agent any
-        stages {
-            stage('Build image') {
-                steps {
-                    echo 'Starting to build docker image DB'
-                    script {
-                        def DB = docker.build("my-image:${env.BUILD_ID}","-f ${env.WORKSPACE}/db/Dockerfile .")
-                        def nodejs = docker.build("my-image:${env.BUILD_ID}","-f ${env.WORKSPACE}/app/Dockerfile .") 
-                        def php = docker.build("my-image:${env.BUILD_ID}","-f ${env.WORKSPACE}/php/Dockerfile .") 
-                    }
-                }
-            }
-        }
-    }
