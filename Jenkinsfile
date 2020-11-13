@@ -4,8 +4,8 @@ pipeline {
         stage("Clean up images and containers") {
             steps {
                 script {
-                    docker rm -f $(docker ps -q -a)
-                    docker rmi -f $(docker images -q)
+                    docker ps -qa | xargs docker rm -f
+                    docker images -qa | xargs docker rmi -f
                 }
             }    
         }      
