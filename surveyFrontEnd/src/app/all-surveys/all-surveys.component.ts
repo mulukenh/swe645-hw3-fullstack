@@ -18,12 +18,14 @@ export class AllSurveysComponent implements OnInit {
     this.service.getAllStudentGnum().subscribe(
       (response: any) => {
       //Store the response in array
-      console.log(response)
+      //console.log(response)
       let surveydata = response
-      if(Array.isArray(surveydata.survey) == false)
+      if(surveydata != null )
+      {
+        if(Array.isArray(surveydata.survey) == false)
       {
         this.studentSurveyData = surveydata.survey;
-        this.gnumArr.push(this.studentSurveyData.survey.contactInfo.id);
+        this.gnumArr.push(this.studentSurveyData.survey.id);
       }
       else{
         this.studentSurveyData = surveydata.survey[0];
@@ -31,6 +33,7 @@ export class AllSurveysComponent implements OnInit {
           this.gnumArr.push(surveydata.survey[i].id);
         }
         //this.gnumArr[0] = this.studentSurveyData.survey.contactInfo.id;
+      }
       }
       },
       (error: any) => {
