@@ -1,14 +1,14 @@
 pipeline {
     agent any 
     stages {
-        stage("Clean up images and containers") {
-            steps {
-                script {
-                    sh 'docker ps -qa | xargs docker rm -f'
-                    sh 'docker images -qa | xargs docker rmi -f'
-                }
-            }    
-        }      
+        // stage("Clean up images and containers") {
+        //     steps {
+        //         script {
+        //             sh 'docker ps -qa | xargs docker rm -f'
+        //             sh 'docker images -qa | xargs docker rmi -f'
+        //         }
+        //     }    
+        // }      
         stage("Installing npm package and building angular app") {
             steps {
                 script {
@@ -21,22 +21,22 @@ pipeline {
                 }
             }    
         } 
-        // stage("building docker image") {
-        //     steps {
-        //         echo 'creating docker images'
-        //         script {
-        //             checkout scm 
-        //             def mysqldbImage = docker.build("mulukenh/surveydb:${env.BUILD_ID}","-f surveydb.dockerfile .")
-        //             def backendImage = docker.build("mulukenh/surveybackend:${env.BUILD_ID}","-f surveybackend.dockerfile .") 
-        //             def frontendImage = docker.build("mulukenh/surveyfrontend:${env.BUILD_ID}","-f surveyfrontend.dockerfile .") 
-        //             docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-        //                 mysqldbImage.push()
-        //                 backendImage.push()
-        //                 frontendImage.push()
-        //             }   
-        //         }
-        //     }
-        // }   
+        stage("building docker image") {
+            steps {
+                echo 'creating docker images'
+                script {
+                    checkout scm 
+                    def mysqldbImage = docker.build("mulukenh/surveydb:${env.BUILD_ID}","-f surveydb.dockerfile .")
+                    def backendImage = docker.build("mulukenh/surveybackend:${env.BUILD_ID}","-f surveybackend.dockerfile .") 
+                    def frontendImage = docker.build("mulukenh/surveyfrontend:${env.BUILD_ID}","-f surveyfrontend.dockerfile .") 
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                        mysqldbImage.push()
+                        backendImage.push()
+                        frontendImage.push()
+                    }   
+                }
+            }
+        }   
         // stage("Deploying to Rancher") {
         //     steps {
         //         script {
