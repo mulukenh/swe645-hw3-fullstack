@@ -4,14 +4,15 @@ pipeline {
         stage("Clean up images and containers") {
             steps {
                 script {
-                    docker ps -qa | xargs docker rm -f
-                    docker images -qa | xargs docker rmi -f
+                    sh 'docker ps -qa | xargs docker rm -f'
+                    sh 'docker images -qa | xargs docker rmi -f'
                 }
             }    
         }      
         stage("Installing npm package and building angular app") {
             steps {
                 script {
+                    echo 'building executables started ...'
                     sh 'cd surveyFrontEnd && npm install'
                     sh 'ng build --prod && cd ..'
                     sh 'mvn -f surveyBackEnd/pom.xml clean package'
