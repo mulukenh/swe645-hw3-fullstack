@@ -1,6 +1,11 @@
 pipeline {
     agent any 
     stages {
+        stage('Clean') {
+            steps {
+                deleteDir()
+            }
+        }
         // stage("Clean up images and containers") {
         //     steps {
         //         script {
@@ -22,7 +27,7 @@ pipeline {
                         cd ./surveyFrontEnd
                         echo "Current dir: $(pwd)"
                         rm -rf node_modules && rm package-lock.json
-                        npm install
+                        npm install --verbose
                         ng build --prod && cd ../surveyBackend
                         echo "Current dir: $(pwd)"
                         mvn -f surveyBackEnd/pom.xml clean package
