@@ -13,15 +13,18 @@ pipeline {
             steps {
                 script {
                     checkout scm 
+
                     echo 'building executables started ...'
-                    sh 'cd surveyFrontEnd'
-                    sh 'pwd'
-                    sh 'rm package-lock.json && rm -rf node_modules'
-                    sh 'npm install'
-                    sh 'ng build --prod && cd ..'
-                    sh 'mvn -f surveyBackEnd/pom.xml clean package'
-                    sh 'ls -a'
-                    sh 'ls surveyBackEnd'
+                    sh script:'''
+                        #!/bin/bash
+                        cd ./surveyFrontEnd
+                        echo "Current dir: $(pwd)"
+                        npm install
+                        ng build --prod && cd ../surveyBackend
+                        echo "Current dir: $(pwd)"
+                        mvn -f surveyBackEnd/pom.xml clean package
+                        cd ..
+                    '''
                 }
             }    
         } 
