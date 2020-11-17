@@ -19,6 +19,7 @@ pipeline {
                         #!/bin/bash
                         cd ./surveyFrontEnd
                         echo "Current dir: $(pwd)"
+                        rm -rf node_modules && rm package-lock.json
                         npm install
                         ng build --prod && cd ../surveyBackend
                         echo "Current dir: $(pwd)"
