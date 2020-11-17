@@ -14,7 +14,9 @@ pipeline {
                 script {
                     checkout scm 
                     echo 'building executables started ...'
-                    sh 'cd surveyFrontEnd && npm install'
+                    sh 'cd surveyFrontEnd'
+                    sh 'rm package-lock.json && rm -rf node_modules'
+                    sh 'npm install'
                     sh 'ng build --prod && cd ..'
                     sh 'mvn -f surveyBackEnd/pom.xml clean package'
                     sh 'ls -a'
