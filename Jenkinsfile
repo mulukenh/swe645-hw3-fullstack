@@ -12,6 +12,7 @@ pipeline {
         stage("Installing npm package and building angular app") {
             steps {
                 script {
+                    checkout scm 
                     echo 'building executables started ...'
                     sh 'cd surveyFrontEnd && npm install'
                     sh 'ng build --prod && cd ..'
@@ -25,7 +26,6 @@ pipeline {
             steps {
                 echo 'creating docker images'
                 script {
-                    checkout scm 
                     def mysqldbImage = docker.build("mulukenh/surveydb:${env.BUILD_ID}","-f surveydb.dockerfile .")
                     def backendImage = docker.build("mulukenh/surveybackend:${env.BUILD_ID}","-f surveybackend.dockerfile .") 
                     def frontendImage = docker.build("mulukenh/surveyfrontend:${env.BUILD_ID}","-f surveyfrontend.dockerfile .") 
