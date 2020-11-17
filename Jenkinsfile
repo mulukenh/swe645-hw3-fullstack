@@ -1,16 +1,16 @@
 pipeline {
     agent any 
     stages {
-        stage("Clean up images and containers") {
-            steps {
-                script {
-                    sh script:'''
-                        docker rm -f $(docker ps -a -q)
-                        docker rmi -f $(docker images -q)
-                    '''
-                }
-            }    
-        }      
+        // stage("Clean up images and containers") {
+        //     steps {
+        //         script {
+        //             sh script:'''
+        //                 docker rm -f $(docker ps -a -q)
+        //                 docker rmi -f $(docker images -q)
+        //             '''
+        //         }
+        //     }    
+        // }      
         stage("Installing npm package and building angular app") {
             steps {
                 script {
