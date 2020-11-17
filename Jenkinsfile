@@ -26,11 +26,9 @@ pipeline {
             steps {
                 echo 'creating docker images'
                 script {
-                    def mysqldbImage = docker.build("mulukenh/surveydb:${env.BUILD_ID}","-f surveydb.dockerfile .")
                     def backendImage = docker.build("mulukenh/surveybackend:${env.BUILD_ID}","-f surveybackend.dockerfile .") 
                     def frontendImage = docker.build("mulukenh/surveyfrontend:${env.BUILD_ID}","-f surveyfrontend.dockerfile .") 
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                        mysqldbImage.push()
                         backendImage.push()
                         frontendImage.push()
                     }   
