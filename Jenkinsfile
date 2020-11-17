@@ -15,6 +15,7 @@ pipeline {
                     checkout scm 
                     echo 'building executables started ...'
                     sh 'cd surveyFrontEnd'
+                    sh 'pwd'
                     sh 'rm package-lock.json && rm -rf node_modules'
                     sh 'npm install'
                     sh 'ng build --prod && cd ..'
