@@ -5,8 +5,8 @@ pipeline {
             steps {
                 script {
                     sh script:'''
-                        docker ps -qa | xargs docker rm -f
-                        docker images -qa | xargs docker rmi -f
+                        docker rm -f $(docker ps -a -q)
+                        docker rmi -f $(docker images -q)
                     '''
                 }
             }    
