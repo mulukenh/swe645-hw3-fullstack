@@ -1,14 +1,16 @@
 pipeline {
     agent any 
     stages {
-        // stage("Clean up images and containers") {
-        //     steps {
-        //         script {
-        //             sh 'docker ps -qa | xargs docker rm -f'
-        //             sh 'docker images -qa | xargs docker rmi -f'
-        //         }
-        //     }    
-        // }      
+        stage("Clean up images and containers") {
+            steps {
+                script {
+                    sh script:'''
+                        docker ps -qa | xargs docker rm -f
+                        docker images -qa | xargs docker rmi -f
+                    '''
+                }
+            }    
+        }      
         stage("Installing npm package and building angular app") {
             steps {
                 script {
@@ -42,15 +44,15 @@ pipeline {
                 }
             }
         }   
-        // stage("Deploying to Rancher") {
-        //     steps {
-        //         script {
-        //             sh 'kubectl set image deployment/surveydb-app surveydb-app=mulukenh/surveydb:${env.BUILD_ID} -n survey-db'
-        //             sh 'kubectl set image deployment/surveybackend-app surveybackend-app=mulukenh/surveybackend:${env.BUILD_ID} -n survey-backend'
-        //             sh 'kubectl set image deployment/surveyfrontend-app surveyfrontend-app=mulukenh/surveyfrontend:${env.BUILD_ID} -n survey-frontend'
-        //         }
-        //     }    
-        // }    
+        stage("Deploying to Rancher") {
+            steps {
+                script {
+                    sh 'kubectl set image deployment/surveydb-app surveydb-app=mulukenh/surveydb:${env.BUILD_ID} -n survey-db'
+                    sh 'kubectl set image deployment/surveybackend-app surveybackend-app=mulukenh/surveybackend:${env.BUILD_ID} -n survey-backend'
+                    sh 'kubectl set image deployment/surveyfrontend-app surveyfrontend-app=mulukenh/surveyfrontend:${env.BUILD_ID} -n survey-frontend'
+                }
+            }    
+        }    
     }
 }
 
