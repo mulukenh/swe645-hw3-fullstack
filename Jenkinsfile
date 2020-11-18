@@ -28,6 +28,7 @@ pipeline {
                     echo 'building executables started ...'
                     sh script:'''
                         #!/bin/bash
+                        echo "Current dir: $(pwd)"
                         cd  ./surveyBackEnd
                         echo "Current dir: $(pwd)"
                         mvn -f pom.xml clean package
