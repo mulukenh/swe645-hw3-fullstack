@@ -5,10 +5,6 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
-    options {
-        skipStagesAfterUnstable()
-    }
-
     stages {
         stage('Clean') {
             steps {
@@ -29,11 +25,10 @@ pipeline {
             steps {
                 script {
                     checkout scm 
-
                     echo 'building executables started ...'
                     sh script:'''
                         #!/bin/bash
-                        cd  surveyBackEnd
+                        cd  ./surveyBackEnd
                         echo "Current dir: $(pwd)"
                         mvn -f pom.xml clean package
                         cd ../
