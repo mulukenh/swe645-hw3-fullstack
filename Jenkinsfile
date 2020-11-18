@@ -11,7 +11,6 @@ pipeline {
                 script {
                     sh script:'''
                         #!/bin/bash
-                        docker rm -f $(docker ps -a -q)
                         docker system prune --all -f
                     '''
                 }
