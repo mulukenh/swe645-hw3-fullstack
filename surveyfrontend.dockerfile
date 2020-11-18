@@ -1,8 +1,9 @@
 FROM    node:14.1-alpine AS builder
 WORKDIR /app
 COPY    surveyFrontEnd/package.json surveyFrontEnd/package-lock.json ./
-RUN     npm install
+RUN     npm install --verbose
 COPY    ./surveyFrontEnd/ ./
+RUN     npm run ng
 RUN     ng build --prod
 
 FROM    nginx:1.17-alpine
