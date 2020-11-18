@@ -5,18 +5,7 @@ pipeline {
             steps {
                 deleteDir()
             }
-        }
-        stage("Clean up images and containers") {
-            steps {
-                script {
-                    sh script:'''
-                        #!/bin/bash
-                        docker rm -f $(docker ps -a -q)
-                        docker rmi -f $(docker images -q)
-                    '''
-                }
-            }    
-        }      
+        }   
         stage("building docker image") {
             steps {
                 echo 'creating docker images'
@@ -39,6 +28,17 @@ pipeline {
                 }
             }    
         }    
+        stage("Clean up images and containers") {
+            steps {
+                script {
+                    sh script:'''
+                        #!/bin/bash
+                        docker rm -f $(docker ps -a -q)
+                        docker rmi -f $(docker images -q)
+                    '''
+                }
+            }    
+        }   
     }
 }
 
