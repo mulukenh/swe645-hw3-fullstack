@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
+    agent any 
     stages {
         stage('Clean') {
             steps {
@@ -21,29 +16,36 @@ pipeline {
         //         }
         //     }    
         // }      
-        stage("Installing npm package and building angular app") {
-            steps {
-                script {
-                    checkout scm 
-                    echo 'building executables started ...'
-                    sh script:'''
-                        #!/bin/bash
-                        echo "Current dir: $(pwd)"
-                        cd  ./surveyBackEnd
-                        echo "Current dir: $(pwd)"
-                        mvn -f pom.xml clean package
-                        cd ../
-                    '''
-                }
-            }    
-        } 
+        // stage("Installing npm package and building angular app") {
+        //     steps {
+        //         script {
+                    
+
+        //             echo 'building executables started ...'
+        //             sh script:'''
+        //                 #!/bin/bash
+        //                 cd ./surveyFrontEnd
+        //                 echo "Current dir: $(pwd)"
+        //                 rm -rf node_modules && rm package-lock.json
+        //                 npm install --verbose
+        //                 ng build --prod && cd ../surveyBackend
+        //                 echo "Current dir: $(pwd)"
+        //                 mvn -f surveyBackEnd/pom.xml clean package
+        //                 cd ..
+        //             '''
+        //         }
+        //     }    
+        // } 
         stage("building docker image") {
             steps {
                 echo 'creating docker images'
                 script {
+                    checkout scm 
                     def backendImage = docker.build("mulukenh/surveybackend:${env.BUILD_ID}","-f surveybackend.dockerfile .") 
+                    def frontendImage = docker.build("mulukenh/surveyfrontend:${env.BUILD_ID}","-f surveyfrontend.dockerfile .") 
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                         backendImage.push()
+                        frontendImage.push()
                     }   
                 }
             }
@@ -51,7 +53,9 @@ pipeline {
         stage("Deploying to Rancher") {
             steps {
                 script {
+                    sh 'kubectl set image deployment/surveydb-app surveydb-app=mulukenh/surveydb:${env.BUILD_ID} -n survey-db'
                     sh 'kubectl set image deployment/surveybackend-app surveybackend-app=mulukenh/surveybackend:${env.BUILD_ID} -n survey-backend'
+                    sh 'kubectl set image deployment/surveyfrontend-app surveyfrontend-app=mulukenh/surveyfrontend:${env.BUILD_ID} -n survey-frontend'
                 }
             }    
         }    
