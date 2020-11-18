@@ -9,8 +9,11 @@ pipeline {
         stage("Clean up images and containers") {
             steps {
                 script {
-                    docker rm -f $(docker ps -a -q)
-                    docker rmi -f $(docker images -q)
+                    sh script:'''
+                        #!/bin/bash
+                        docker rm -f $(docker ps -a -q)
+                        docker rmi -f $(docker images -q)
+                    '''
                 }
             }    
         }      
