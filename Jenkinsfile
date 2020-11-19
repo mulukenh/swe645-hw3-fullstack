@@ -9,10 +9,10 @@ pipeline {
         stage("Clean up images and containers") {
             steps {
                 script {
-                    sh script:'''
+                    sh script:"""
                         #!/bin/bash
                         docker system prune --all -f
-                    '''
+                    """
                 }
             }    
         }   
@@ -25,16 +25,22 @@ pipeline {
                         def backendImage = docker.build("mulukenh/surveybackend:${env.BUILD_ID}","-f surveybackend.dockerfile .") 
                         backendImage.push()
                     }   
-                    sh 'docker system prune --all -f'
-                    sh 'kubectl set image deployment/surveybackend-app surveybackend-app=mulukenh/surveybackend:${env.BUILD_ID} -n survey-backend'
+                    sh script:"""
+                        #!/bin/bash
+                        docker system prune --all -f
+                        kubectl set image deployment/surveybackend-app surveybackend-app=mulukenh/surveybackend:${env.BUILD_ID} -n survey-backend
+                    """
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                         def frontendImage = docker.build("mulukenh/surveyfrontend:${env.BUILD_ID}","-f surveyfrontend.dockerfile .") 
                         frontendImage.push()
                     }   
-                    sh 'kubectl set image deployment/surveyfrontend-app surveyfrontend-app=mulukenh/surveyfrontend:${env.BUILD_ID} -n survey-frontend'
+                    sh script:"""
+                        #!/bin/bash
+                        kubectl set image deployment/surveyfrontend-app surveyfrontend-app=mulukenh/surveyfrontend:${env.BUILD_ID} -n survey-frontend
+                    """
                 }
             }
-        }    
+        }   
     }
 }
 
