@@ -3,7 +3,7 @@ WORKDIR /app
 COPY    surveyFrontEnd/package.json surveyFrontEnd/package-lock.json ./
 RUN     npm install --verbose
 COPY    ./surveyFrontEnd ./
-RUN     npm run ng --build --output-path=./dist/swe645-assignment3
+RUN     npm run ng --build --output-path=./
 FROM    nginx:1.17-alpine
 COPY    --from=builder /app/dist/swe645-assignment3 /usr/share/nginx/html
 
