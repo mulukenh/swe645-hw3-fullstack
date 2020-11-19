@@ -6,23 +6,23 @@ services:
       build: 
         context: .
         dockerfile: surveyfrontend.dockerfile
-      # depends_on: 
-      #   - survey-backend
+      depends_on: 
+        - survey-backend
       ports:
         - 8200:80
       networks:
         - survey-app-network
         
-    # survey-backend:
-    #   container_name: survey-backend
-    #   image: mulukenh/surveybackend:latest
-    #   build: 
-    #     context: .
-    #     dockerfile: surveybackend.dockerfile
-    #   ports:
-    #     - "8080:8080"
-    #   networks:
-    #     - survey-app-network 
+    survey-backend:
+      container_name: survey-backend
+      image: mulukenh/surveybackend:latest
+      build: 
+        context: .
+        dockerfile: surveybackend.dockerfile
+      ports:
+        - "8080:8080"
+      networks:
+        - survey-app-network 
     # links:
     #   - survey-db
 
