@@ -23,14 +23,8 @@ pipeline {
                     checkout scm 
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                         def backendImage = docker.build("mulukenh/surveybackend:${env.BUILD_ID}","-f surveybackend.dockerfile .") 
-                        backendImage.push()
-                    }   
-                    sh script:"""
-                        #!/bin/bash
-                        docker system prune --all -f
-                    """
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                         def frontendImage = docker.build("mulukenh/surveyfrontend:${env.BUILD_ID}","-f surveyfrontend.dockerfile .") 
+                        backendImage.push()
                         frontendImage.push()
                     }   
                 }
