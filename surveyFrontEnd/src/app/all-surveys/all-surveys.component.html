@@ -13,7 +13,10 @@
 		<!-- Left Column -->
       <div class="w3-third">
       		<div class="w3-container">
-				<h5 class="w3-opacity"><b>Student Surveys</b></h5>
+				<h5 class="w3-opacity">
+					<b>Student Surveys</b>
+					<span style="margin-left: 10%" id="allsurveysBtn" routerLink="/" class="w3-bar-item w3-button w3-black" routerLinkActive="tabs-active" [routerLinkActiveOptions]="{exact: true}">Back to Survey Form</span>
+				</h5>
 				<ul *ngFor="let gnum of gnumArr" class="w3-ul w3-light-grey w3-border w3-hoverable">
 				    <a><li (click)='getStudentSurveyData(gnum)' name="gnum" value="gnum">{{gnum}}</li></a>
 				</ul>
