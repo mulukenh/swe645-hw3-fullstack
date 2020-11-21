@@ -13,9 +13,9 @@
 		<!-- Left Column -->
       <div class="w3-third">
       		<div class="w3-container">
-				<h5 class="w3-opacity">
+				<h5>
 					<b>Student Surveys</b>
-					<span style="margin-left: 10%" id="allsurveysBtn" routerLink="/" class="w3-bar-item w3-button w3-black" routerLinkActive="tabs-active" [routerLinkActiveOptions]="{exact: true}">Back to Survey Form</span>
+					<div style="margin-left: 10%" id="allsurveysBtn" routerLink="/" class="w3-bar-item w3-button w3-black" routerLinkActive="tabs-active" [routerLinkActiveOptions]="{exact: true}">Back to Survey Form</div>
 				</h5>
 				<ul *ngFor="let gnum of gnumArr" class="w3-ul w3-light-grey w3-border w3-hoverable">
 				    <a><li (click)='getStudentSurveyData(gnum)' name="gnum" value="gnum">{{gnum}}</li></a>
@@ -24,8 +24,8 @@
       </div>
       <!-- Right Column -->
       <div class="w3-twothird">
-      		<!-- This message will be displayed once the form is submitted -->
-      		<h2 class="w3-padding-16 w3-margin-right w3-xxlarge w3-opacity">Thank you for completing the survey form</h2>
+			  <!-- This message will be displayed once the form is submitted -->
+				<h2 class="w3-padding-16 w3-margin-right w3-xxlarge w3-opacity">Thank you for completing the survey form</h2>
 					<!-- Generate table and display survey data of clicked gnumber/student id only if data is not null-->
 					<!-- The value of respective field is retrieved using the getter function defined in the StudentBean-->
 					<div class="QstnText" *ngIf="studentSurveyData == null">No Survey Data Present!!</div>
