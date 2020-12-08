@@ -9,7 +9,7 @@ import { throwError } from 'rxjs';
 export class StudentSurveyService {
 
   //serviceUrl = "http://localhost:8080/surveyBackEnd/surveys";
-  serviceUrl = "http://a531fb2ec6fde4a3a92d027e14d07280-159699233.us-east-2.elb.amazonaws.com:8080/surveyBackEnd/surveys";
+  serviceUrl = "http://a355a3e2d0a414f9a82eaee752897157-316150700.us-east-2.elb.amazonaws.com:8080/surveyBackEnd/surveys";
   constructor(private http: HttpClient) { }
 
   /*
